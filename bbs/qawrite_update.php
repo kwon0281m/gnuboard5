@@ -217,7 +217,7 @@ if($w == '' || $w == 'a' || $w == 'r') {
     $sql = " insert into {$g5['qa_content_table']}
                 set qa_num          = '$qa_num',
                     mb_id           = '{$member['mb_id']}',
-                    qa_name         = '{$member['mb_nick']}',
+                    qa_name         = '".addslashes($member['mb_nick'])."',
                     qa_email        = '$qa_email',
                     qa_hp           = '$qa_hp',
                     qa_type         = '$qa_type',
@@ -244,7 +244,7 @@ if($w == '' || $w == 'a' || $w == 'r') {
     sql_query($sql);
 
     if($w == '' || $w == 'r') {
-        $qa_id = mysql_insert_id();
+        $qa_id = sql_insert_id();
 
         if($w == 'r' && $write['qa_related']) {
             $qa_related = $write['qa_related'];
